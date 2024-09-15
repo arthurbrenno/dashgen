@@ -19,6 +19,9 @@ def ler_dados(caminho_arquivo):
     return dados
 
 def criar_dashboard(dados, configuracoes, arquivo_saida):
+    # Garantir que os tipos de dados estão corretos
+    dados = dados.convert_dtypes()
+
     # Cria uma fonte de dados para o Bokeh
     source = ColumnDataSource(dados)
     ferramentas = configuracoes.get('ferramentas', 'pan,wheel_zoom,box_zoom,reset,save')
@@ -37,8 +40,8 @@ def criar_dashboard(dados, configuracoes, arquivo_saida):
     y = parametros_grafico.get('y')
 
     # Plota o gráfico com base no tipo
-    if tipo_grafico == 'circle':
-        p.circle(x=x, y=y, source=source, **parametros_grafico.get('extras', {}))
+    if tipo_grafico == 'circle' or tipo_grafico == 'scatter':
+        p.scatter(x=x, y=y, source=source, **parametros_grafico.get('extras', {}))
     elif tipo_grafico == 'line':
         p.line(x=x, y=y, source=source, **parametros_grafico.get('extras', {}))
     elif tipo_grafico == 'bar':
@@ -74,7 +77,7 @@ def criar_dashboard(dados, configuracoes, arquivo_saida):
                 }
 
                 for (let i = 0; i < original_data[filtro_coluna].length; i++) {
-                    if (original_data[filtro_coluna][i] == valor) {
+                    if (String(original_data[filtro_coluna][i]) === valor) {
                         for (let key in data) {
                             new_data[key].push(original_data[key][i]);
                         }
