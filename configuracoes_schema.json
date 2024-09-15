@@ -1,0 +1,114 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Esquema de Configurações para o Dashboard Interativo",
+    "type": "object",
+    "required": ["tipo_grafico", "parametros_grafico"],
+    "properties": {
+      "titulo": {
+        "type": "string",
+        "description": "Título do dashboard que aparecerá na página HTML e no gráfico.",
+        "default": "Dashboard Interativo"
+      },
+      "tipo_grafico": {
+        "type": "string",
+        "description": "Tipo de gráfico a ser plotado. Pode ser 'circle', 'line' ou 'bar'.",
+        "enum": ["circle", "line", "bar"]
+      },
+      "parametros_grafico": {
+        "type": "object",
+        "description": "Parâmetros para configurar o gráfico.",
+        "required": ["x", "y"],
+        "properties": {
+          "x": {
+            "type": "string",
+            "description": "Nome da coluna para o eixo X."
+          },
+          "y": {
+            "type": "string",
+            "description": "Nome da coluna para o eixo Y."
+          },
+          "extras": {
+            "type": "object",
+            "description": "Parâmetros adicionais específicos do tipo de gráfico.",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "x_axis_label": {
+        "type": "string",
+        "description": "Rótulo para o eixo X.",
+        "default": ""
+      },
+      "y_axis_label": {
+        "type": "string",
+        "description": "Rótulo para o eixo Y.",
+        "default": ""
+      },
+      "ferramentas": {
+        "type": "string",
+        "description": "Ferramentas do Bokeh a serem incluídas no gráfico, separadas por vírgulas.",
+        "default": "pan,wheel_zoom,box_zoom,reset,save"
+      },
+      "tooltips": {
+        "type": "array",
+        "description": "Lista de pares para mostrar informações quando o cursor passa sobre um ponto.",
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "type": "string",
+              "description": "Rótulo do tooltip."
+            },
+            {
+              "type": "string",
+              "description": "Referência à coluna, usando '@' antes do nome da coluna."
+            }
+          ]
+        },
+        "default": []
+      },
+      "filtros": {
+        "type": "array",
+        "description": "Lista de filtros interativos a serem adicionados.",
+        "items": {
+          "type": "object",
+          "required": ["tipo", "coluna"],
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "description": "Tipo de filtro. Pode ser 'select' ou 'slider'.",
+              "enum": ["select", "slider"]
+            },
+            "coluna": {
+              "type": "string",
+              "description": "Nome da coluna sobre a qual o filtro atuará."
+            },
+            "titulo": {
+              "type": "string",
+              "description": "Título do filtro que aparecerá no dashboard.",
+              "default": ""
+            },
+            "minimo": {
+              "type": "number",
+              "description": "Valor mínimo para o slider (apenas para 'slider')."
+            },
+            "maximo": {
+              "type": "number",
+              "description": "Valor máximo para o slider (apenas para 'slider')."
+            },
+            "passo": {
+              "type": "number",
+              "description": "Incremento do slider (apenas para 'slider')."
+            }
+          },
+          "additionalProperties": false
+        },
+        "default": []
+      }
+    },
+    "additionalProperties": false
+  }
+  

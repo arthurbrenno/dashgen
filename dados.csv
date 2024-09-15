@@ -1,0 +1,11 @@
+Produto,Categoria,Quantidade,Valor
+Caneta,Papelaria,100,1.50
+Lápis,Papelaria,150,0.75
+Caderno,Papelaria,200,5.00
+Borracha,Papelaria,120,0.50
+Tesoura,Papelaria,80,3.00
+Agenda,Papelaria,60,10.00
+Mochila,Escritório,40,50.00
+Grampeador,Escritório,30,15.00
+Pasta,Escritório,70,7.50
+Calculadora,Escritório,25,25.00

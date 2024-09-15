@@ -1,0 +1,37 @@
+{
+    "titulo": "Dashboard Interativo de Vendas",
+    "tipo_grafico": "circle",
+    "parametros_grafico": {
+        "x": "Quantidade",
+        "y": "Valor",
+        "extras": {
+            "size": 10,
+            "color": "Categoria",
+            "legend_field": "Categoria"
+        }
+    },
+    "x_axis_label": "Quantidade Vendida",
+    "y_axis_label": "Valor em R$",
+    "ferramentas": "pan,wheel_zoom,box_zoom,reset,save,hover",
+    "tooltips": [
+        ["Produto", "@Produto"],
+        ["Categoria", "@Categoria"],
+        ["Valor", "@Valor{0.00}"]
+    ],
+    "filtros": [
+        {
+            "tipo": "select",
+            "coluna": "Categoria",
+            "titulo": "Filtrar por Categoria"
+        },
+        {
+            "tipo": "slider",
+            "coluna": "Valor",
+            "titulo": "Filtrar por Valor Máximo",
+            "minimo": 0,
+            "maximo": 10000,
+            "passo": 100
+        }
+    ]
+}
+ 
